@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Document éducatif sur un schéma de démarchage prédateur ciblant les seniors et personnes vulnérables : vente à domicile de tapisseries à prix gonflés, crédits forcés, abus de faiblesse.">
+  <title>Alerte — Démarchage prédateur ciblant les seniors</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:        #b91c1c;
+      --red-dark:   #7f1d1d;
+      --red-light:  #fef2f2;
+      --red-border: #fca5a5;
+      --navy:       #1e3a5f;
+      --navy-light: #e8f0fa;
+      --navy-border:#93b5d8;
+      --amber:      #92400e;
+      --amber-light:#fffbeb;
+      --amber-border:#fcd34d;
+      --green:      #166534;
+      --green-light:#f0fdf4;
+      --green-border:#86efac;
+      --page-bg:    #f8f5f0;
+      --card-bg:    #ffffff;
+      --text:       #1c1917;
+      --text-muted: #6b7280;
+      --border:     #e5e2dc;
+      --radius:     8px;
+      --radius-lg:  12px;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--page-bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 100%);
+      color: #fff;
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.5rem, 5vw, 2.4rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
+    .hero p {
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      opacity: 0.9;
+      max-width: 640px;
+      margin: 0 auto 1.5rem;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    .hero-tag {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      padding: 3px 12px;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .card-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── STATS GRID ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .stat {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1rem;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--red);
+      line-height: 1;
+    }
+    .stat-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ── PROFILE FIELDS ── */
+    .field {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.6rem;
+      align-items: flex-start;
+      font-size: 0.9rem;
+    }
+    .field-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      min-width: 140px;
+      padding-top: 2px;
+      flex-shrink: 0;
+    }
+    .field-value { color: var(--text); line-height: 1.5; }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-right: 4px;
+      margin-bottom: 3px;
+    }
+    .badge-red    { background: var(--red-light);    color: var(--red);    border: 1px solid var(--red-border); }
+    .badge-amber  { background: var(--amber-light);  color: var(--amber);  border: 1px solid var(--amber-border); }
+    .badge-navy   { background: var(--navy-light);   color: var(--navy);   border: 1px solid var(--navy-border); }
+    .badge-green  { background: var(--green-light);  color: var(--green);  border: 1px solid var(--green-border); }
+
+    /* ── STEP LIST ── */
+    .steps { list-style: none; }
+    .steps li {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-body { font-size: 0.9rem; line-height: 1.55; }
+    .step-body strong { color: var(--red-dark); }
+    .step-body em { font-style: normal; color: var(--text-muted); font-size: 0.85rem; }
+
+    /* ── RED FLAGS ── */
+    .flags { list-style: none; }
+    .flags li {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      align-items: flex-start;
+    }
+    .flags li:last-child { border-bottom: none; }
+    .flag-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--red-light);
+      color: var(--red);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── QUOTES ── */
+    .quotes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 0.875rem;
+    }
+    .quote {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--red);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.1rem 0.9rem;
+    }
+    .quote p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+    .quote-meta {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .quote-meta .source {
+      background: var(--page-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1px 8px;
+    }
+
+    /* ── DEBUNK TABLE ── */
+    .debunk { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    .debunk thead tr {
+      background: var(--page-bg);
+    }
+    .debunk th {
+      padding: 0.7rem 1rem;
+      text-align: left;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-muted);
+      border-bottom: 2px solid var(--border);
+    }
+    .debunk td {
+      padding: 0.85rem 1rem;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.55;
+    }
+    .debunk td:first-child {
+      color: var(--text-muted);
+      font-style: italic;
+      border-right: 1px solid var(--border);
+      width: 46%;
+    }
+    .debunk td:last-child { color: var(--text); }
+    .debunk tr:last-child td { border-bottom: none; }
+
+    /* ── ACTION STEPS ── */
+    .actions { list-style: none; }
+    .actions li {
+      display: flex;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      align-items: flex-start;
+    }
+    .actions li:last-child { border-bottom: none; }
+    .action-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .tag-urgent { background: var(--red-light); color: var(--red); }
+    .tag-bank   { background: var(--amber-light); color: var(--amber); }
+    .tag-report { background: var(--navy-light); color: var(--navy); }
+    .tag-legal  { background: var(--green-light); color: var(--green); }
+
+    /* ── NGO GRID ── */
+    .ngo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.75rem;
+    }
+    .ngo {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+    }
+    .ngo-name {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .ngo-full {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .ngo-contact { font-size: 0.8rem; color: var(--text); line-height: 1.7; }
+    .ngo-contact a { color: var(--navy); text-decoration: none; }
+    .ngo-contact a:hover { text-decoration: underline; }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight-box {
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .hb-red    { background: var(--red-light);    border: 1px solid var(--red-border); color: var(--red-dark); }
+    .hb-navy   { background: var(--navy-light);   border: 1px solid var(--navy-border); color: var(--navy); }
+    .hb-amber  { background: var(--amber-light);  border: 1px solid var(--amber-border); color: var(--amber); }
+    .hb-green  { background: var(--green-light);  border: 1px solid var(--green-border); color: var(--green); }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      background: var(--page-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-top: 2.5rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      .hero { background: #7f1d1d !important; }
+      .stats-grid, .quotes-grid, .ngo-grid { grid-template-columns: 1fr 1fr !important; }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 520px) {
+      .field { flex-direction: column; gap: 2px; }
+      .field-label { min-width: unset; }
+      .debunk thead { display: none; }
+      .debunk td { display: block; width: 100%; border-right: none !important; }
+      .debunk td:first-child {
+        font-style: normal;
+        font-weight: 600;
+        color: var(--text-muted);
+        background: var(--page-bg);
+        border-bottom: none !important;
+        padding-bottom: 0.25rem;
+      }
+      .debunk tr { display: block; border-bottom: 1px solid var(--border); }
+      .debunk tr:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero" role="banner">
+  <div class="hero-badge">Document éducatif · Abus de faiblesse</div>
+  <h1>Démarchage prédateur<br>ciblant les seniors</h1>
+  <p>Un schéma de vente abusif documenté par plus de <strong>100 avis publics</strong> sur une période de 18 ans (2008–2026), ciblant des personnes âgées isolées ou vulnérables.</p>
+  <div class="hero-meta">
+    <span class="hero-tag">Vente à domicile</span>
+    <span class="hero-tag">Tapisseries artisanales</span>
+    <span class="hero-tag">Abus de faiblesse</span>
+    <span class="hero-tag">France entière</span>
+    <span class="hero-tag">Redressement judiciaire</span>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- FICHE SIGNALÉTIQUE -->
+  <p class="section-title">Fiche du schéma</p>
+  <div class="card">
+    <p class="card-title">Profil de l'opérateur mis en cause</p>
+    <div class="field">
+      <span class="field-label">Secteur</span>
+      <span class="field-value">Vente à domicile de tapisseries artisanales et objets textiles haut de gamme</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Zone d'opération</span>
+      <span class="field-value">France entière — réseau de VRP itinérants (décorateurs-conseil)</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Méthode d'acquisition</span>
+      <span class="field-value">Publicités dans des magazines grand public, questionnaires en ligne, démarchage téléphonique</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Durée documentée</span>
+      <span class="field-value">2008–2026 (au moins 18 ans de signalements répétés)</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Statut juridique</span>
+      <span class="field-value">
+        <span class="badge badge-red">Redressement judiciaire</span>
+        <span class="badge badge-amber">Procédure pénale en cours (cas documenté)</span>
+      </span>
+    </div>
+    <div class="field">
+      <span class="field-label">Cibles privilégiées</span>
+      <span class="field-value">
+        <span class="badge badge-red">Personnes âgées 70–90 ans</span>
+        <span class="badge badge-red">Isolement (veuvage)</span>
+        <span class="badge badge-red">Début Alzheimer</span>
+        <span class="badge badge-red">Personnes vivant seules</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- CHIFFRES CLÉS -->
+  <p class="section-title">Chiffres clés</p>
+  <div class="stats-grid">
+    <div class="stat">
+      <div class="stat-label">Montant minimum documenté</div>
+      <div class="stat-value">1 500 €</div>
+      <div class="stat-sub">Pour un kit canevas de format A4 à réaliser soi-même</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Montant maximum documenté</div>
+      <div class="stat-value">74 100 €</div>
+      <div class="stat-sub">Payés par une seule famille pour 4 tapisseries</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Valeur réelle à la revente</div>
+      <div class="stat-value">100–250 €</div>
+      <div class="stat-sub">Expertise indépendante. Ni brocante ni antiquaire n'en veut.</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Durée du crédit imposé</div>
+      <div class="stat-value">60 mois</div>
+      <div class="stat-sub">Crédit conso souscrit via un intermédiaire financier tiers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Avis négatifs publics</div>
+      <div class="stat-value">100+</div>
+      <div class="stat-sub">Google Maps + GoWork sur 18 ans de signalements</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Âge moyen des victimes</div>
+      <div class="stat-value">75–85 ans</div>
+      <div class="stat-sub">Certains cas documentés : 90 ans, Alzheimer précoce</div>
+    </div>
+  </div>
+
+  <!-- SCHÉMA DE L'ARNAQUE -->
+  <p class="section-title">Le schéma étape par étape</p>
+  <div class="card">
+    <p class="card-title">Déroulé typique documenté dans les témoignages</p>
+    <ol class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Ciblage :</strong> La cible répond à une publicité magazine ou remplit un questionnaire en ligne pour recevoir un "catalogue gratuit". Cette action est ensuite utilisée comme preuve d'une <em>"demande volontaire"</em>, base de la ligne de défense de l'opérateur.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Annonce de visite :</strong> Au lieu d'envoyer le catalogue, un commercial appelle pour annoncer sa venue : <em>"le catalogue est en rupture, je vous l'apporterai en main propre."</em> La personne âgée ne réalise pas qu'elle a déclenché une visite commerciale.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Première visite — qualification :</strong> Le VRP évalue discrètement les revenus, la situation familiale (veuvage, isolement), l'état cognitif et la vulnérabilité de la cible. Il instaure un lien de confiance.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong>Deuxième visite — vente :</strong> Présentation agressive du produit avec mise en scène d'une "remise exceptionnelle valable uniquement aujourd'hui". <em>Exemple documenté : 27 000 € → 17 000 € après "négociation".</em> La remise fictive crée un sentiment d'urgence et de bonne affaire.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <strong>Signature du bon de commande :</strong> L'origine réelle des produits (Tunisie / Carthage) est mentionnée en petits caractères sur le bon de commande, permettant à l'opérateur d'affirmer avoir agi en transparence. La valeur marchande réelle n'est jamais communiquée.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <strong>Crédit imposé :</strong> Un crédit à la consommation sur 60 mois est souscrit le jour même via un intermédiaire financier, rendant le remboursement long, l'objet difficile à contester et la procédure de rétractation complexe.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">7</div>
+        <div class="step-body">
+          <strong>Verrouillage légal :</strong> Chaque étape est construite pour résister aux recours. Le formulaire de rétractation est illisible (petits caractères au verso du contrat). Des appels de harcèlement suivent toute tentative d'annulation.
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- SIGNAUX D'ALARME -->
+  <p class="section-title">Signaux d'alarme</p>
+  <div class="card">
+    <p class="card-title">Comment reconnaître ce type de démarchage</p>
+    <ul class="flags">
+      <li>
+        <div class="flag-icon">⚠</div>
+        <div>Un représentant vous contacte pour vous apporter un catalogue <em>en main propre</em> car "il est en rupture de stock en ligne"</div>
+      </li>
+      <li>
+        <div class="flag-icon">⚠</div>
+        <div>Dès la première visite, il pose des questions sur vos revenus, votre retraite, votre situation familiale ou votre logement</div>
+      </li>
+      <li>
+        <div class="flag-icon">⚠</div>
+        <div>Il présente une "remise exceptionnelle" très importante, valable uniquement aujourd'hui ou pour cette visite uniquement</div>
+      </li>
+      <li>
+        <div class="flag-icon">⚠</div>
+        <div>Le prix demandé est de plusieurs milliers d'euros pour un objet artisanal dont la valeur réelle de revente est nulle</div>
+      </li>
+      <li>
+        <div class="flag-icon">⚠</div>
+        <div>On vous propose un financement ou un crédit à la consommation pour pouvoir "vous offrir" le produit</div>
+      </li>
+      <li>
+        <div class="flag-icon">⚠</div>
+        <div>L'origine réelle de fabrication (pays étranger) est mentionnée en tout petits caractères sur un document, jamais verbalement</div>
+      </li>
+      <li>
+        <div class="flag-icon">⚠</div>
+        <div>Le commercial évoque un label ou un patrimoine culturel reconnu (UNESCO, appellation géographique) pour justifier la valeur — sans que le produit y soit réellement rattaché</div>
+      </li>
+      <li>
+        <div class="flag-icon">⚠</div>
+        <div>Le devis et le bon de commande sont datés du même jour, ne laissant aucun temps de réflexion</div>
+      </li>
+      <li>
+        <div class="flag-icon">⚠</div>
+        <div>Après un refus ou une tentative de rétractation, des appels téléphoniques répétés recommencent depuis des numéros différents</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- TÉMOIGNAGES -->
+  <p class="section-title">Témoignages publics</p>
+  <div class="quotes-grid">
+
+    <blockquote class="quote">
+      <p>"Ma mère, patiente Alzheimer précoce, vivant seule chez elle, a payé plusieurs tapisseries grâce à des techniques de vente à domicile douteuses."</p>
+      <div class="quote-meta">
+        <span class="source">Google Maps</span>
+        <span>Anonyme · il y a 9 mois</span>
+      </div>
+    </blockquote>
+
+    <blockquote class="quote">
+      <p>"Un canevas de format A4 environ pour la somme de 1 500 €. C'est purement et simplement de l'abus de faiblesse !"</p>
+      <div class="quote-meta">
+        <span class="source">GoWork</span>
+        <span>G. · oct. 2025</span>
+      </div>
+    </blockquote>
+
+    <blockquote class="quote">
+      <p>"Elle avait été achetée à l'époque 34 700 FRF soit 5 289 €, facture à l'appui. Aujourd'hui elle en vaut tout juste 250 €. Des générations entières ont sacrifié et saigné leur budget pour ce genre d'objet, pensant bien faire pour leurs héritiers."</p>
+      <div class="quote-meta">
+        <span class="source">Google Maps</span>
+        <span>J.-L. J. · déc. 2025</span>
+      </div>
+    </blockquote>
+
+    <blockquote class="quote">
+      <p>"Mes parents de 82 ans viennent d'acheter une tapisserie d'environ 1m×1m pour 10 000 euros. Ils sont persuadés d'avoir quelque chose de grande valeur… fabriqué en Tunisie."</p>
+      <div class="quote-meta">
+        <span class="source">GoWork</span>
+        <span>M.G. · mars 2026</span>
+      </div>
+    </blockquote>
+
+    <blockquote class="quote">
+      <p>"Mon père qui a 90 ans vient d'être démarché et a subi les mêmes procédés pour lui faire passer une commande de presque 20 000 €. Les pratiques s'apparentent à de l'abus de faiblesse sur personne âgée et nous allons porter plainte."</p>
+      <div class="quote-meta">
+        <span class="source">GoWork</span>
+        <span>Marc · juin 2025</span>
+      </div>
+    </blockquote>
+
+    <blockquote class="quote">
+      <p>"Ma mère a pu se rétracter dans les délais — ce n'est pas grâce au formulaire de rétractation illisible et minuscule au verso de son contrat. Elle a depuis été harcelée d'appels."</p>
+      <div class="quote-meta">
+        <span class="source">Google Maps</span>
+        <span>Anonyme · il y a 1 mois</span>
+      </div>
+    </blockquote>
+
+    <blockquote class="quote">
+      <p>"Il y a 30 ans ma mère avait acheté une tapisserie très chère. Plus tard échangée contre une autre où elle a dû recommencer à payer des sommes énormes. Elle nous avait dit que ça avait beaucoup de valeur et qu'on pourrait la revendre. Quelle belle arnaque ! Ça ne vaut même pas 200 euros."</p>
+      <div class="quote-meta">
+        <span class="source">Google Maps</span>
+        <span>F. · il y a 2 mois</span>
+      </div>
+    </blockquote>
+
+    <blockquote class="quote" style="border-left-color: var(--green);">
+      <p>"Avec l'aide de la DGCCRF et la FEVAD, j'ai réussi à récupérer la somme. Je constate qu'ils n'ont pas changé leur méthode — bon courage à tous."</p>
+      <div class="quote-meta">
+        <span class="source">GoWork</span>
+        <span>Christophe · mars 2026</span>
+        <span class="badge badge-green" style="margin-left: auto;">Recours abouti</span>
+      </div>
+    </blockquote>
+
+  </div>
+
+  <!-- DEBUNK -->
+  <p class="section-title">Arguments du vendeur vs. réalité documentée</p>
+  <div class="card" style="padding: 0; overflow: hidden;">
+    <table class="debunk">
+      <thead>
+        <tr>
+          <th>Ce que le vendeur affirme</th>
+          <th>Ce que les témoignages documentent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>« Le client nous a contactés volontairement — nous ne faisons pas de porte-à-porte. »</td>
+          <td>Le questionnaire ou la demande de catalogue <strong>déclenche une visite commerciale</strong> à domicile sans que la personne en soit clairement informée. La "demande volontaire" sert ensuite de bouclier juridique.</td>
+        </tr>
+        <tr>
+          <td>« Nos prix reflètent la qualité artisanale et le travail manuel. »</td>
+          <td>Les produits sont fabriqués hors de France. La valeur de revente documentée est de <strong>100 à 250 € pour des objets vendus 5 000 à 20 000 €</strong>. Aucun expert indépendant ne certifie la valeur annoncée.</td>
+        </tr>
+        <tr>
+          <td>« La personne n'était pas sous tutelle au moment de la vente. »</td>
+          <td>L'Alzheimer précoce ou la détérioration cognitive est souvent <strong>non diagnostiquée au moment des faits</strong>. Ce délai entre les faits et le diagnostic est utilisé comme argument défensif alors qu'il signale précisément l'absence de protection de la victime.</td>
+        </tr>
+        <tr>
+          <td>« Les contrats sont signés dans les règles. »</td>
+          <td>Le formulaire de rétractation est <strong>illisible et en petits caractères au verso</strong> du bon de commande. Le devis et la commande sont signés le même jour. Le crédit est souscrit immédiatement, complexifiant tout recours.</td>
+        </tr>
+        <tr>
+          <td>« Nous offrons une garantie de reprise ou de remise en vente. »</td>
+          <td>Des témoignages documentent que la promesse de reprise est ensuite conditionnée à l'<strong>achat d'un nouveau produit</strong>. La revente sur le marché secondaire est impossible à des prix proches du prix payé.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- QUE FAIRE -->
+  <p class="section-title">Que faire si vous êtes concerné</p>
+  <div class="card">
+    <p class="card-title">Actions prioritaires</p>
+    <ul class="actions">
+      <li>
+        <span class="action-tag tag-urgent">Urgent</span>
+        <span><strong>Dans les 14 jours suivant la commande :</strong> exercer le droit de rétractation par lettre recommandée avec accusé de réception (LRAR). Conserver la preuve d'envoi. Ne pas attendre.</span>
+      </li>
+      <li>
+        <span class="action-tag tag-bank">Banque</span>
+        <span><strong>S'opposer aux prélèvements :</strong> contacter immédiatement sa banque pour bloquer les prélèvements liés au crédit et à la commande, même si le délai de rétractation est dépassé.</span>
+      </li>
+      <li>
+        <span class="action-tag tag-report">Conserver</span>
+        <span>Rassembler tous les documents : bon de commande, contrat de crédit, publicité d'origine, courriers, relevés bancaires, témoignages de proches présents lors de la visite.</span>
+      </li>
+      <li>
+        <span class="action-tag tag-report">Signaler</span>
+        <span><strong>Déposer un signalement à la DGCCRF</strong> sur <a href="https://signal.conso.gouv.fr" target="_blank" rel="noopener">signal.conso.gouv.fr</a> ou appeler le <strong>3939</strong>. Chaque signalement alimente les enquêtes nationales sur ce type de pratiques.</span>
+      </li>
+      <li>
+        <span class="action-tag tag-legal">Plainte</span>
+        <span><strong>Porter plainte</strong> au commissariat ou à la gendarmerie pour <em>abus de faiblesse</em> (art. 223-15-2 du Code pénal). Un dossier médical postérieur aux faits peut être recevable comme preuve de vulnérabilité.</span>
+      </li>
+      <li>
+        <span class="action-tag tag-legal">Tutelle</span>
+        <span>Si la personne est sous tutelle ou curatelle : saisir le <strong>juge des tutelles</strong> du tribunal judiciaire. Si elle souffre d'Alzheimer non diagnostiqué au moment des faits, des procédures existent pour faire reconnaître l'incapacité rétroactive.</span>
+      </li>
+      <li>
+        <span class="action-tag tag-report">Action groupe</span>
+        <span>Plusieurs victimes ont évoqué la possibilité d'une <strong>action collective</strong>. Des associations de consommateurs comme l'UFC-Que Choisir ou la CLCV peuvent coordonner des recours groupés.</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- NGO -->
+  <p class="section-title">Associations et recours</p>
+  <div class="ngo-grid">
+
+    <div class="ngo">
+      <div class="ngo-name">UFC — Que Choisir</div>
+      <div class="ngo-full">Que Choisir Ensemble · 233 bd Voltaire, 75011 Paris</div>
+      <div class="ngo-contact">
+        📞 01 43 48 55 48<br>
+        ✉ <a href="mailto:mouvement@quechoisir.org">mouvement@quechoisir.org</a><br>
+        🌐 <a href="https://www.quechoisir.org" target="_blank" rel="noopener">quechoisir.org</a>
+      </div>
+    </div>
+
+    <div class="ngo">
+      <div class="ngo-name">CLCV</div>
+      <div class="ngo-full">Confédération de la consommation, du logement et du cadre de vie · 41 rue Périer, 92120 Montrouge</div>
+      <div class="ngo-contact">
+        📞 01 56 54 32 10<br>
+        ✉ <a href="mailto:clcv@clcv.org">clcv@clcv.org</a><br>
+        🌐 <a href="https://www.clcv.org" target="_blank" rel="noopener">clcv.org</a>
+      </div>
+    </div>
+
+    <div class="ngo">
+      <div class="ngo-name">DGCCRF — SignalConso</div>
+      <div class="ngo-full">Direction générale de la concurrence, de la consommation et de la répression des fraudes</div>
+      <div class="ngo-contact">
+        📞 <strong>3939</strong> (numéro national)<br>
+        🌐 <a href="https://signal.conso.gouv.fr" target="_blank" rel="noopener">signal.conso.gouv.fr</a>
+      </div>
+    </div>
+
+    <div class="ngo">
+      <div class="ngo-name">AFOC</div>
+      <div class="ngo-full">Association Force Ouvrière Consommateurs · 141 av. du Maine, 75014 Paris</div>
+      <div class="ngo-contact">
+        📞 01 40 52 85 85<br>
+        ✉ <a href="mailto:afoc@afoc.net">afoc@afoc.net</a><br>
+        🌐 <a href="https://www.afoc.net" target="_blank" rel="noopener">afoc.net</a>
+      </div>
+    </div>
+
+    <div class="ngo">
+      <div class="ngo-name">CSF</div>
+      <div class="ngo-full">Confédération syndicale des familles · 53 rue Riquet, 75019 Paris</div>
+      <div class="ngo-contact">
+        📞 01 44 89 86 80<br>
+        ✉ <a href="mailto:contact@la-csf.org">contact@la-csf.org</a><br>
+        🌐 <a href="https://www.la-csf.org" target="_blank" rel="noopener">la-csf.org</a>
+      </div>
+    </div>
+
+    <div class="ngo">
+      <div class="ngo-name">FEVAD</div>
+      <div class="ngo-full">Fédération du e-commerce et de la vente à distance — médiateur en cas de litige avec un vendeur à distance</div>
+      <div class="ngo-contact">
+        🌐 <a href="https://www.fevad.com" target="_blank" rel="noopener">fevad.com</a><br>
+        <em style="font-size:0.75rem; color:var(--text-muted);">Un recours via la FEVAD a permis à au moins une victime d'obtenir remboursement.</em>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer" role="note">
+    <strong>Note légale :</strong> Ce document est publié à titre strictement éducatif et s'appuie exclusivement sur des avis publics vérifiables publiés sur des plateformes d'évaluation accessibles à tous. Il décrit un <em>schéma de pratiques commerciales</em> documenté dans ces avis, sans identifier nominativement aucune personne physique ou morale. Si vous êtes victime ou proche d'une victime d'un démarchage similaire, conservez tous les documents et consultez un avocat spécialisé en droit de la consommation ou contactez l'une des associations mentionnées ci-dessus.
+  </div>
+
+</main>
+
+</body>
+</html>
