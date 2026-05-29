@@ -463,6 +463,47 @@
       border-top: 1px solid var(--border);
       background: var(--page-bg);
     }
+    .addr-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .addr-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .addr-org {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.6);
+      min-width: 90px;
+    }
+    .addr-email {
+      font-size: 0.82rem;
+      color: #fff;
+      font-family: monospace;
+      flex: 1;
+    }
+    .addr-copy {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.9);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+    .addr-copy:hover { background: rgba(255,255,255,0.22); }
+    .addr-copy.copied { background: rgba(134,239,172,0.25); border-color: rgba(134,239,172,0.5); color: #86efac; }
 
     /* ── DISCLAIMER ── */
     .disclaimer {
@@ -904,11 +945,37 @@
       <span class="email-header-title">✉ Modèle de courrier — associations de consommateurs</span>
       <button class="copy-btn" onclick="copyEmail(this)" aria-label="Copier le contenu du courrier">Copier le texte</button>
     </div>
-    <div class="email-meta">
-      <div class="email-meta-row">
-        <span class="email-meta-label">À</span>
-        <span>contact@quechoisir.org · clcv@clcv.org · afoc@afoc.net · contact@la-csf.org <em style="color:var(--text-muted);font-size:0.75rem;">(envoyer séparément)</em></span>
+    <div class="email-header" style="background: var(--navy); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.75rem; padding-bottom: 0.75rem; flex-direction: column; align-items: flex-start; gap: 10px;">
+      <span class="email-header-title" style="opacity:0.6; font-size:0.68rem;">Destinataires — cliquez pour copier chaque adresse, envoyez séparément</span>
+      <div class="addr-list">
+        <div class="addr-row">
+          <span class="addr-org">Que Choisir</span>
+          <span class="addr-email">mouvement@quechoisir.org</span>
+          <button class="addr-copy" onclick="copyAddr(this,'mouvement@quechoisir.org')">Copier</button>
+        </div>
+        <div class="addr-row">
+          <span class="addr-org">CLCV</span>
+          <span class="addr-email">clcv@clcv.org</span>
+          <button class="addr-copy" onclick="copyAddr(this,'clcv@clcv.org')">Copier</button>
+        </div>
+        <div class="addr-row">
+          <span class="addr-org">AFOC</span>
+          <span class="addr-email">afoc@afoc.net</span>
+          <button class="addr-copy" onclick="copyAddr(this,'afoc@afoc.net')">Copier</button>
+        </div>
+        <div class="addr-row">
+          <span class="addr-org">CSF</span>
+          <span class="addr-email">contact@la-csf.org</span>
+          <button class="addr-copy" onclick="copyAddr(this,'contact@la-csf.org')">Copier</button>
+        </div>
+        <div class="addr-row">
+          <span class="addr-org">AFOC (alt)</span>
+          <span class="addr-email">indecosa@cgt.fr</span>
+          <button class="addr-copy" onclick="copyAddr(this,'indecosa@cgt.fr')">Copier</button>
+        </div>
       </div>
+    </div>
+    <div class="email-meta">
       <div class="email-meta-row">
         <span class="email-meta-label">Objet</span>
         <span>Signalement — Démarchage prédateur à domicile ciblant des seniors (vente de tapisseries)</span>
@@ -960,6 +1027,17 @@ Cordialement,
   </div>
 
   <script>
+    function copyAddr(btn, addr) {
+      navigator.clipboard.writeText(addr).then(() => {
+        btn.textContent = '✓ Copié';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copier';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
     function copyEmail(btn) {
       const body = document.getElementById('email-body');
       // Extract plain text, stripping HTML tags
