@@ -378,6 +378,92 @@
     .hb-amber  { background: var(--amber-light);  border: 1px solid var(--amber-border); color: var(--amber); }
     .hb-green  { background: var(--green-light);  border: 1px solid var(--green-border); color: var(--green); }
 
+    /* ── EMAIL TEMPLATE ── */
+    .email-wrap {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .email-header {
+      background: var(--navy);
+      color: #fff;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .email-header-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+    .copy-btn {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .copy-btn:hover { background: rgba(255,255,255,0.25); }
+    .copy-btn.copied { background: rgba(134,239,172,0.25); border-color: rgba(134,239,172,0.6); }
+    .email-meta {
+      padding: 0.9rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--page-bg);
+    }
+    .email-meta-row {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      margin-bottom: 3px;
+      align-items: baseline;
+    }
+    .email-meta-row:last-child { margin-bottom: 0; }
+    .email-meta-label {
+      font-weight: 600;
+      color: var(--text-muted);
+      min-width: 55px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .email-meta-row span:last-child { color: var(--text); }
+    .email-body {
+      padding: 1.25rem;
+      font-size: 0.875rem;
+      line-height: 1.75;
+      color: var(--text);
+      white-space: pre-wrap;
+      font-family: inherit;
+    }
+    .email-body .placeholder {
+      background: var(--amber-light);
+      border: 1px solid var(--amber-border);
+      border-radius: 3px;
+      padding: 0 5px;
+      color: var(--amber);
+      font-weight: 600;
+      font-style: normal;
+    }
+    .email-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 0.6rem 1.25rem 0.9rem;
+      border-top: 1px solid var(--border);
+      background: var(--page-bg);
+    }
+
     /* ── DISCLAIMER ── */
     .disclaimer {
       background: var(--page-bg);
@@ -805,6 +891,104 @@
     </div>
 
   </div>
+
+  <!-- EMAIL TEMPLATE -->
+  <p class="section-title">Modèle de courrier aux associations</p>
+
+  <div class="highlight-box hb-navy" style="margin-bottom: 1rem;">
+    Ce modèle est destiné à informer les associations de consommateurs et à recueillir leur retour sur ce type de schéma. Adaptez les zones surlignées en <span class="placeholder" style="font-size:0.8rem;">jaune</span> avant envoi. Aucun nom d'entreprise n'est mentionné volontairement.
+  </div>
+
+  <div class="email-wrap" id="email-template">
+    <div class="email-header">
+      <span class="email-header-title">✉ Modèle de courrier — associations de consommateurs</span>
+      <button class="copy-btn" onclick="copyEmail(this)" aria-label="Copier le contenu du courrier">Copier le texte</button>
+    </div>
+    <div class="email-meta">
+      <div class="email-meta-row">
+        <span class="email-meta-label">À</span>
+        <span>contact@quechoisir.org · clcv@clcv.org · afoc@afoc.net · contact@la-csf.org <em style="color:var(--text-muted);font-size:0.75rem;">(envoyer séparément)</em></span>
+      </div>
+      <div class="email-meta-row">
+        <span class="email-meta-label">Objet</span>
+        <span>Signalement — Démarchage prédateur à domicile ciblant des seniors (vente de tapisseries)</span>
+      </div>
+    </div>
+    <div class="email-body" id="email-body">Madame, Monsieur,
+
+Je me permets de vous contacter afin de soumettre un signalement concernant un schéma de vente à domicile abusif, documenté par plus de 100 avis publics sur une période de 18 ans (2008–2026), ciblant des personnes âgées et vulnérables dans le secteur de la vente de tapisseries artisanales.
+
+─── Le schéma documenté ───────────────────────────────────
+
+Un opérateur propose à des seniors (70–90 ans) de recevoir un "catalogue gratuit" via une publicité magazine ou un questionnaire en ligne. Cette démarche génère une visite commerciale à domicile sans que la personne soit clairement informée de la nature commerciale de la visite.
+
+Lors des visites, un VRP évalue discrètement les revenus et la situation familiale, puis propose un produit (tapisserie artisanale) à des prix compris entre 2 000 et 20 000 €, assorti d'une "remise exceptionnelle" valable uniquement ce jour-là. La valeur de revente réelle des produits, selon des experts indépendants, est de 100 à 250 €.
+
+L'origine réelle de fabrication (hors de France) figure en petits caractères sur le bon de commande. Un crédit à la consommation sur 60 mois est souscrit le jour même via un intermédiaire financier. Le formulaire de rétractation est illisible au verso du contrat.
+
+Des témoignages documentent des ventes à des personnes atteintes d'Alzheimer précoce non diagnostiqué, à des personnes récemment veuves, et à des personnes de 90 ans et plus.
+
+─── Mes questions ─────────────────────────────────────────
+
+1. Votre association a-t-elle déjà reçu des signalements similaires concernant ce type de schéma (vente à domicile de tapisseries artisanales à des seniors) ?
+
+2. Des procédures de recours collectif sont-elles envisageables ou en cours pour des victimes de ce type de démarchage ?
+
+3. Quelles démarches conseillez-vous aux familles dont le proche est victime et dont le délai de rétractation de 14 jours est dépassé ?
+
+4. Est-il possible d'obtenir une expertise juridique ou un accompagnement pour les familles souhaitant porter plainte pour abus de faiblesse (art. 223-15-2 du Code pénal) ?
+
+─── Document de référence ─────────────────────────────────
+
+Un document éducatif de synthèse, basé exclusivement sur des avis publics vérifiables, est disponible à l'adresse suivante :
+
+https://alx.github.io/alerte-demarchage-seniors/
+
+─────────────────────────────────────────────────────────────
+
+Je reste disponible pour tout échange complémentaire et vous remercie de l'attention que vous porterez à ce signalement.
+
+Cordialement,
+
+<em class="placeholder">[Votre prénom et nom]</em>
+<em class="placeholder">[Votre adresse e-mail]</em>
+<em class="placeholder">[Votre numéro de téléphone — optionnel]</em>
+<em class="placeholder">[Votre ville]</em></div>
+    <div class="email-note">
+      Remplacez les zones surlignées par vos coordonnées personnelles avant envoi. Envoyez un courrier séparé à chaque association pour un meilleur suivi. Conservez une copie de chaque envoi avec la date.
+    </div>
+  </div>
+
+  <script>
+    function copyEmail(btn) {
+      const body = document.getElementById('email-body');
+      // Extract plain text, stripping HTML tags
+      const tmp = document.createElement('div');
+      tmp.innerHTML = body.innerHTML;
+      // Replace placeholder em tags with bracket text
+      tmp.querySelectorAll('em.placeholder').forEach(el => {
+        el.textContent = el.textContent;
+      });
+      const subject = 'Signalement — Démarchage prédateur à domicile ciblant des seniors (vente de tapisseries)';
+      const text = 'Objet : ' + subject + '\n\n' + tmp.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copié !';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copier le texte';
+          btn.classList.remove('copied');
+        }, 2200);
+      }).catch(() => {
+        // Fallback: select text
+        const range = document.createRange();
+        range.selectNodeContents(body);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        btn.textContent = 'Texte sélectionné — Ctrl+C pour copier';
+        setTimeout(() => { btn.textContent = 'Copier le texte'; }, 3000);
+      });
+    }
+  </script>
 
   <!-- DISCLAIMER -->
   <div class="disclaimer" role="note">
