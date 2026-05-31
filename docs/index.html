@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Document éducatif sur un schéma de démarchage prédateur ciblant les seniors et personnes vulnérables : vente à domicile de tapisseries à prix gonflés, crédits forcés, abus de faiblesse.">
   <title>Alerte — Démarchage prédateur ciblant les seniors</title>
+  <meta property="og:title" content="Alerte Démarchage : Protégez vos parents seniors">
+  <meta property="og:description" content="Comment fonctionne le démarchage prédateur ciblant les personnes âgées, comment le reconnaître, et comment annuler un contrat signé sous pression. Document basé sur 100+ avis publics.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alx.github.io/alerte-demarchage-seniors/">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Alerte Démarchage : Protégez vos parents seniors">
+  <meta name="twitter:description" content="Comment fonctionne le démarchage prédateur ciblant les personnes âgées, comment le reconnaître, et comment annuler un contrat signé sous pression.">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -517,10 +525,122 @@
       line-height: 1.6;
     }
 
+    /* ── URGENCY BANNER ── */
+    #urgence-banner {
+      background: #b91c1c;
+      color: #fff;
+      text-align: center;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    #urgence-banner a {
+      color: #fff;
+      text-decoration: underline;
+      margin-left: 0.5rem;
+      white-space: nowrap;
+    }
+    #urgence-banner a:hover { opacity: 0.85; }
+
+    /* ── NAV SOMMAIRE ── */
+    #sommaire {
+      background: var(--navy);
+      padding: 0.6rem 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.5rem;
+      justify-content: center;
+    }
+    #sommaire a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+    #sommaire a:hover {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    /* ── SHARE BAR ── */
+    .share-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      padding: 0.9rem 1.25rem;
+      background: var(--page-bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .btn-share {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .btn-share:hover { opacity: 0.85; }
+    .btn-wa   { background: #25d366; color: #fff; }
+    .btn-fb   { background: #1877f2; color: #fff; }
+    .btn-mail { background: var(--navy); color: #fff; }
+
+    /* ── LETTER TEMPLATE (rétractation) ── */
+    .letter-wrap {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .letter-header {
+      background: var(--red);
+      color: #fff;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .letter-header-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .letter-body {
+      padding: 1.25rem;
+      font-size: 0.875rem;
+      line-height: 1.75;
+      color: var(--text);
+      white-space: pre-wrap;
+      font-family: inherit;
+    }
+    .letter-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 0.6rem 1.25rem 0.9rem;
+      border-top: 1px solid var(--border);
+      background: var(--page-bg);
+    }
+
     /* ── PRINT ── */
     @media print {
-      .hero { background: #7f1d1d !important; }
+      #urgence-banner, #sommaire, .share-bar, .copy-btn, .addr-copy, .letter-header button { display: none !important; }
+      .hero { background: #7f1d1d !important; print-color-adjust: exact; }
       .stats-grid, .quotes-grid, .ngo-grid { grid-template-columns: 1fr 1fr !important; }
+      .card, .letter-wrap, .email-wrap, .quote { break-inside: avoid; }
+      .debunk tr { break-inside: avoid; }
+      @page { margin: 1.5cm; }
+      body { font-size: 12px; }
     }
 
     /* ── MOBILE ── */
@@ -544,6 +664,19 @@
 </head>
 <body>
 
+<div id="urgence-banner" role="alert">
+  ⚠ Vous ou un proche venez de signer une commande ? Vous avez <strong>14 jours pour tout annuler</strong>.
+  <a href="#retractation">→ Démarche d'urgence</a>
+</div>
+
+<nav id="sommaire" aria-label="Sommaire de la page">
+  <a href="#schema">Le schéma</a>
+  <a href="#que-faire">Que faire</a>
+  <a href="#retractation">Rétractation d'urgence</a>
+  <a href="#associations">Associations</a>
+  <a href="#courrier">Modèles de courrier</a>
+</nav>
+
 <!-- HERO -->
 <header class="hero" role="banner">
   <div class="hero-badge">Document éducatif · Abus de faiblesse</div>
@@ -557,6 +690,12 @@
     <span class="hero-tag">Redressement judiciaire</span>
   </div>
 </header>
+
+<div class="share-bar" aria-label="Partager cette page">
+  <a href="https://wa.me/?text=Alerte%20d%C3%A9marchage%20pr%C3%A9dateur%20ciblant%20les%20seniors%20%E2%80%94%20comment%20le%20reconna%C3%AEtre%20et%20se%20prot%C3%A9ger%20%3A%20https%3A%2F%2Falx.github.io%2Falerte-demarchage-seniors%2F" class="btn-share btn-wa" target="_blank" rel="noopener">📱 WhatsApp</a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Falx.github.io%2Falerte-demarchage-seniors%2F" class="btn-share btn-fb" target="_blank" rel="noopener">Facebook</a>
+  <a href="mailto:?subject=Alerte%20d%C3%A9marchage%20pr%C3%A9dateur%20ciblant%20les%20seniors&body=Bonjour%2C%0A%0AJe%20vous%20transmets%20ce%20document%20%C3%A9ducatif%20sur%20un%20sch%C3%A9ma%20de%20d%C3%A9marchage%20pr%C3%A9dateur%20ciblant%20les%20personnes%20%C3%A2g%C3%A9es.%0A%0Ahttps%3A%2F%2Falx.github.io%2Falerte-demarchage-seniors%2F" class="btn-share btn-mail">✉ E-mail</a>
+</div>
 
 <main class="container">
 
@@ -634,7 +773,7 @@
   </div>
 
   <!-- SCHÉMA DE L'ARNAQUE -->
-  <p class="section-title">Le schéma étape par étape</p>
+  <p class="section-title" id="schema">Le schéma étape par étape</p>
   <div class="card">
     <p class="card-title">Déroulé typique documenté dans les témoignages</p>
     <ol class="steps">
@@ -672,6 +811,7 @@
         <div class="step-num">6</div>
         <div class="step-body">
           <strong>Crédit imposé :</strong> Un crédit à la consommation sur 60 mois est souscrit le jour même via un intermédiaire financier, rendant le remboursement long, l'objet difficile à contester et la procédure de rétractation complexe.
+          <br><em>Important : en vertu des articles L312-1 et suivants du Code de la consommation, <strong>l'annulation du contrat de vente entraîne automatiquement l'annulation du crédit affecté</strong>, et vice versa. Vous n'avez pas à rembourser le crédit si la vente est légalement annulée.</em>
         </div>
       </li>
       <li>
@@ -834,7 +974,7 @@
   </div>
 
   <!-- QUE FAIRE -->
-  <p class="section-title">Que faire si vous êtes concerné</p>
+  <p class="section-title" id="que-faire">Que faire si vous êtes concerné</p>
   <div class="card">
     <p class="card-title">Actions prioritaires</p>
     <ul class="actions">
@@ -844,7 +984,13 @@
       </li>
       <li>
         <span class="action-tag tag-bank">Banque</span>
-        <span><strong>S'opposer aux prélèvements :</strong> contacter immédiatement sa banque pour bloquer les prélèvements liés au crédit et à la commande, même si le délai de rétractation est dépassé.</span>
+        <div>
+          <strong>Révoquer le mandat de prélèvement SEPA :</strong><br>
+          <span style="font-size:0.85rem; display:block; margin-top:4px;">
+            • <strong>Dans les 14 jours :</strong> la rétractation légale prime — envoyez d'abord la lettre LRAR au vendeur et à l'organisme de crédit (voir ci-dessous). L'annulation du crédit découle automatiquement de l'annulation de la vente.<br>
+            • <strong>Après les 14 jours :</strong> demandez à votre banque la <em>révocation du mandat SEPA</em> (et non un simple "blocage de prélèvement") pour stopper les futures mensualités. Attention : cela n'annule pas la dette légale — la démarche juridique reste nécessaire pour éviter un fichage FICP.
+          </span>
+        </div>
       </li>
       <li>
         <span class="action-tag tag-report">Conserver</span>
@@ -856,7 +1002,10 @@
       </li>
       <li>
         <span class="action-tag tag-legal">Plainte</span>
-        <span><strong>Porter plainte</strong> au commissariat ou à la gendarmerie pour <em>abus de faiblesse</em> (art. 223-15-2 du Code pénal). Un dossier médical postérieur aux faits peut être recevable comme preuve de vulnérabilité.</span>
+        <div>
+          <strong>Porter plainte</strong> au commissariat ou à la gendarmerie pour <em>abus de faiblesse</em> (art. 223-15-2 du Code pénal). Un dossier médical postérieur aux faits peut être recevable comme preuve de vulnérabilité.<br>
+          <span style="font-size:0.85rem; color:var(--text-muted); display:block; margin-top:4px;">En cas de refus d'enregistrement de la plainte (fréquent, l'affaire pouvant être requalifiée en "litige commercial"), vous pouvez écrire directement au <strong>Procureur de la République</strong> du tribunal judiciaire de votre domicile par lettre recommandée avec accusé de réception.</span>
+        </div>
       </li>
       <li>
         <span class="action-tag tag-legal">Tutelle</span>
@@ -870,7 +1019,7 @@
   </div>
 
   <!-- NGO -->
-  <p class="section-title">Associations et recours</p>
+  <p class="section-title" id="associations">Associations et recours</p>
   <div class="ngo-grid">
 
     <div class="ngo">
@@ -899,6 +1048,15 @@
       <div class="ngo-contact">
         📞 <strong>3939</strong> (numéro national)<br>
         🌐 <a href="https://signal.conso.gouv.fr" target="_blank" rel="noopener">signal.conso.gouv.fr</a>
+      </div>
+    </div>
+
+    <div class="ngo">
+      <div class="ngo-name">Info-Escroqueries</div>
+      <div class="ngo-full">Service de la Police Nationale — signalement d'escroqueries et arnaques</div>
+      <div class="ngo-contact">
+        📞 <strong>0 805 805 817</strong> (numéro gratuit)<br>
+        <em style="font-size:0.75rem; color:var(--text-muted);">Lundi–vendredi, 9h–18h30</em>
       </div>
     </div>
 
@@ -933,8 +1091,81 @@
 
   </div>
 
+  <!-- RÉTRACTATION -->
+  <p class="section-title" id="retractation">Modèles de lettre de rétractation — URGENT (14 jours)</p>
+
+  <div class="highlight-box hb-red" style="margin-bottom: 1rem;">
+    <strong>⚠ Délai légal : 14 jours à compter de la signature du contrat.</strong> Passé ce délai, la rétractation n'est plus possible de plein droit. Envoyez ces deux lettres en <strong>Lettre Recommandée avec Accusé de Réception (LRAR)</strong> et conservez les tickets de dépôt.
+  </div>
+
+  <div class="letter-wrap" id="letter-vendeur">
+    <div class="letter-header">
+      <span class="letter-header-title">✉ Lettre 1 — au vendeur / démarcheur</span>
+      <button class="copy-btn" onclick="copyLetter(this,'letter-vendeur-body')" aria-label="Copier la lettre au vendeur">Copier le texte</button>
+    </div>
+    <div class="letter-body" id="letter-vendeur-body"><em class="placeholder">[Votre Prénom Nom]</em>
+<em class="placeholder">[Votre adresse complète]</em>
+<em class="placeholder">[Code postal Ville]</em>
+<em class="placeholder">[Date d'envoi]</em>
+
+<em class="placeholder">[Nom ou raison sociale du vendeur]</em>
+<em class="placeholder">[Adresse du vendeur]</em>
+
+Lettre recommandée avec accusé de réception
+
+Objet : Exercice du droit de rétractation — bon de commande n° <em class="placeholder">[Numéro de commande]</em> du <em class="placeholder">[Date de la commande]</em>
+
+Madame, Monsieur,
+
+Conformément à l'article L221-18 du Code de la consommation, je vous notifie par la présente ma rétractation du contrat de vente conclu le <em class="placeholder">[Date de la commande]</em> à mon domicile, portant sur <em class="placeholder">[description du produit]</em>, pour un montant de <em class="placeholder">[Montant en €]</em>.
+
+En application de l'article L221-24 du Code de la consommation, je vous demande :
+  • de me rembourser l'intégralité des sommes versées dans un délai de 14 jours à compter de la réception de la présente,
+  • de reprendre le produit à vos frais si la livraison a déjà eu lieu.
+
+Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+
+<em class="placeholder">[Votre Prénom Nom]</em></div>
+    <div class="letter-note">
+      Remplacez les zones surlignées par vos informations. Envoyez par LRAR et conservez le ticket de dépôt avec l'avis de réception signé.
+    </div>
+  </div>
+
+  <div class="letter-wrap" id="letter-credit">
+    <div class="letter-header">
+      <span class="letter-header-title">✉ Lettre 2 — à l'organisme de crédit</span>
+      <button class="copy-btn" onclick="copyLetter(this,'letter-credit-body')" aria-label="Copier la lettre à l'organisme de crédit">Copier le texte</button>
+    </div>
+    <div class="letter-body" id="letter-credit-body"><em class="placeholder">[Votre Prénom Nom]</em>
+<em class="placeholder">[Votre adresse complète]</em>
+<em class="placeholder">[Code postal Ville]</em>
+<em class="placeholder">[Date d'envoi]</em>
+
+<em class="placeholder">[Nom de l'organisme de crédit]</em>
+<em class="placeholder">[Adresse de l'organisme de crédit]</em>
+
+Lettre recommandée avec accusé de réception
+
+Objet : Annulation du crédit affecté — contrat n° <em class="placeholder">[Numéro de crédit]</em> — rétractation de la vente du <em class="placeholder">[Date de la commande]</em>
+
+Madame, Monsieur,
+
+Conformément aux articles L312-1 et suivants du Code de la consommation, je vous informe que j'ai exercé mon droit de rétractation concernant le contrat de vente conclu le <em class="placeholder">[Date de la commande]</em> pour <em class="placeholder">[description du produit]</em>, financé par le crédit affecté n° <em class="placeholder">[Numéro de crédit]</em> souscrit le même jour.
+
+L'annulation du contrat de vente entraîne de plein droit l'annulation du crédit affecté qui lui est lié. Je vous demande donc d'annuler immédiatement le contrat de crédit et de cesser tout prélèvement.
+
+Je joins à ce courrier une copie de ma lettre de rétractation adressée au vendeur en date du <em class="placeholder">[Date d'envoi au vendeur]</em>.
+
+Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+
+<em class="placeholder">[Votre Prénom Nom]</em></div>
+    <div class="letter-note">
+      À envoyer en parallèle de la lettre au vendeur, par LRAR séparée. Joignez une copie de votre lettre de rétractation au vendeur.
+    </div>
+  </div>
+
   <!-- EMAIL TEMPLATE -->
-  <p class="section-title">Modèle de courrier aux associations</p>
+  <p class="section-title" id="courrier">Modèle de courrier aux associations</p>
 
   <div class="highlight-box hb-navy" style="margin-bottom: 1rem;">
     Ce modèle est destiné à informer les associations de consommateurs et à recueillir leur retour sur ce type de schéma. Adaptez les zones surlignées en <span class="placeholder" style="font-size:0.8rem;">jaune</span> avant envoi. Aucun nom d'entreprise n'est mentionné volontairement.
@@ -1027,6 +1258,25 @@ Cordialement,
   </div>
 
   <script>
+    function copyLetter(btn, id) {
+      const body = document.getElementById(id);
+      const tmp = document.createElement('div');
+      tmp.innerHTML = body.innerHTML;
+      tmp.querySelectorAll('em.placeholder').forEach(el => { el.textContent = el.textContent; });
+      navigator.clipboard.writeText(tmp.innerText).then(() => {
+        btn.textContent = 'Copié !';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copier le texte'; btn.classList.remove('copied'); }, 2200);
+      }).catch(() => {
+        const range = document.createRange();
+        range.selectNodeContents(body);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        btn.textContent = 'Texte sélectionné — Ctrl+C';
+        setTimeout(() => { btn.textContent = 'Copier le texte'; }, 3000);
+      });
+    }
+
     function copyAddr(btn, addr) {
       navigator.clipboard.writeText(addr).then(() => {
         btn.textContent = '✓ Copié';
